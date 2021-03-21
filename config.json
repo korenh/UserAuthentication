@@ -1,0 +1,7 @@
+{
+    "URL":"mongodb://localhost:27017/",
+    "DB":"auth",
+    "COLL":"auth",
+    "FAIL":["AuthFailed","NotExist"],
+    "SUCCESS":"Successfully"
+}
