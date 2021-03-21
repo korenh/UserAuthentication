@@ -34,6 +34,7 @@ code {
   width: 250px;
   left: 50%;
   top: 50%;
+  color: white;
   transform: perspective(75em) rotateX(10deg) translate(-50%, -50%);
 }
 

@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import Validation from './Validation'
+import {Validation} from './Protected'
 import config from '../config.json'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
+import { useHistory } from "react-router-dom"
+import Auth from './Auth'
 
 export default function Login() {
+    const history = useHistory()
     const [email , setEmail] = useState('')
-    const [name , setName] = useState('')
     const [password , setPassword] = useState('')
     
 
     const Login = () =>{
-        !Validation(email , name , password)? console.log(config.FIELD_ERR) :
-        axios.post( config.LOGIN_URL , {email , name , password})
+        !Validation(email , 'LOGIN' , password)? console.log(config.FIELD_ERR) :
+        axios.post( config.LOGIN_URL , {email , password})
         .then(res =>{
             toast.configure();
             toast.info(config.LOGIN_SUCCESS, {autoClose: 2000});
-            setEmail('');setName('');setPassword('');
+            sessionStorage.setItem('name', res.data.name);
+            Auth.login(() => {history.push("/main")})
         })
         .catch(err => {
             toast.configure();
@@ -26,9 +29,8 @@ export default function Login() {
 
     return (
         <div className='card-form'>
-             <input value={email} type='text' placeholder='Email' onChange={e=>setEmail(e.target.value)}/>
-            <input value={name} type='text' placeholder='Name' onChange={e=>setName(e.target.value)}/>
-            <input value={password} type='text' placeholder='Password' onChange={e=>setPassword(e.target.value)}/>
+             <input type='text' placeholder='Email' onChange={e=>setEmail(e.target.value)}/>
+            <input type='text' placeholder='Password' onChange={e=>setPassword(e.target.value)}/>
             <button onClick={()=>Login()}>Login</button>
         </div>
     )
