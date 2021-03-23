@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import {Validation} from './Protected'
 import config from '../config.json'
@@ -7,9 +7,20 @@ import { useHistory } from "react-router-dom"
 import Auth from './Auth'
 
 export default function Login() {
+    
     const history = useHistory()
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
+
+    useEffect(() => {
+        axios.post( config.VERIFY_URL , { access_token:sessionStorage.getItem('access_token')})
+        .then(res =>{  
+            Auth.login(() => {history.push("/main")}) //res.data.name contains user data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
     
 
     const Login = () =>{
@@ -18,7 +29,7 @@ export default function Login() {
         .then(res =>{
             toast.configure();
             toast.info(config.LOGIN_SUCCESS, {autoClose: 2000});
-            sessionStorage.setItem('name', res.data.name);
+            sessionStorage.setItem('access_token', res.data.access_token);
             Auth.login(() => {history.push("/main")})
         })
         .catch(err => {

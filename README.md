@@ -2,8 +2,6 @@
 
 <img src="./sample/example.png" height="300">
 
-Sample User authentication
-
 ### MongoDB Docker
 ```bash
 docker run -d -p 27017:27017 --name mongo mongo:3.2

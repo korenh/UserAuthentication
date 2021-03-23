@@ -23,8 +23,8 @@ const Validation = (email , name , password) =>{
 
 const Main = () =>{
   return(
-  <div className='card-form' style={{textAlign:'center'}}>
-    <p>Welcome {sessionStorage.getItem('name')}</p>
+  <div className='card-form' style={{textAlign:'left'}}>
+  <p style={{wordWrap:'break-word' , width:'255px'}}>Access Token {sessionStorage.getItem('access_token')}</p>
   </div>
   )
 }

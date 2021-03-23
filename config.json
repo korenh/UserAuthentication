@@ -4,5 +4,6 @@
     "DB":"auth",
     "COLL":"auth",
     "FAIL":["AuthFailed","NotExist"],
-    "SUCCESS":"Successfully"
+    "SUCCESS":"Successfully",
+    "JWT_EXPIRES":"60s"
 }

@@ -1,6 +1,7 @@
 {
     "LOGIN_URL":"http://localhost:5000/auth/login",
     "REGISTER_URL":"http://localhost:5000/auth/register",
+    "VERIFY_URL":"http://localhost:5000/auth/verify",
     "LOGIN_SUCCESS":"Login Successful",
     "REGISTER_SUCCESS":"Register Successful",
     "FIELD_ERR":"Fill out all of the required fields correctly"
